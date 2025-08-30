@@ -44,7 +44,7 @@ for (const card of serviceCards) {
         const historydata = {
             name: serviceName,
             number: serviceNumber,
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleTimeString()
         }
         callhistory.push(historydata);
 
@@ -79,5 +79,25 @@ document.getElementById('clear')
     historyClear.innerHTML = ""
 
 })
+
+
+// Copy button Funtionalities
+
+const copyButtons = document.getElementsByClassName('copy-button')
+
+let copyCountValue = 2
+
+for(const button of copyButtons){
+    button.addEventListener('click', function (){
+        const allCard = button.closest('.all-card')
+        const copyText = allCard.querySelector('.service-number').innerText
+        
+        navigator.clipboard.writeText(copyText)
+        alert('Service Number Coppied')
+        copyCountValue++
+        document.getElementById('copy-count').innerText = copyCountValue
+    })
+}
+
 
 
